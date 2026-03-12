@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(MBTI融合版)</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(随机匹配版)</title>
     <style>
         * {
             margin: 0;
@@ -308,7 +308,7 @@
 <div class="wrapper">
     <div class="header">
         <h1>✨ 내 아이돌 성격 테스트 ✨</h1>
-        <p>输入你的MBTI · 匹配最契合的爱豆</p>
+        <p>输入你的MBTI · 随机匹配更分散</p>
     </div>
 
     <!-- MBTI 输入卡片 -->
@@ -419,9 +419,9 @@
         }
     ];
 
-    // ----- 85位爱豆数据库 (键名英文) -----
+    // ----- 85位爱豆数据库 (与之前完全相同) -----
     const idols = {
-        cute: [ // 可爱元气型
+        cute: [
             { name: "夫胜宽", group: "SEVENTEEN", mbti: "ENFP", keywords: "综艺感,活力素", primary: "A", second: "C", desc: "你是团队里的综艺小树苗！像胜宽一样，用天生的幽默感和治愈笑容让所有人快乐。" },
             { name: "李灿", group: "SEVENTEEN", mbti: "ESFP", keywords: "忙内on top,舞蹈机器", primary: "A", second: "B", desc: "舞台上是舞蹈机器，生活里是团宠忙内。和Dino一样，你用实力和撒娇俘获哥哥们的心。" },
             { name: "李常赫", group: "BOYNEXTDOOR", mbti: "ENFP", keywords: "清爽,少年感", primary: "A", second: "A", desc: "像Riwoo一样，你拥有清新的少年感，总是带着治愈的笑容，是组合的维他命。" },
@@ -447,7 +447,7 @@
             { name: "重田美琉", group: "&TEAM", mbti: "ENFP", keywords: "可爱,日本line", primary: "A", second: "A", desc: "可爱的日本少年！像Harua一样，你有着精致的五官和可爱的性格。" },
             { name: "高山壱誓", group: "&TEAM", mbti: "ENFP", keywords: "活力,舞蹈", primary: "A", second: "B", desc: "活力舞蹈担当！和Jo一样，你总是充满能量，用舞蹈感染每个人。" }
         ],
-        cool: [ // 霸气酷飒型
+        cool: [
             { name: "权顺荣", group: "SEVENTEEN", mbti: "ENTJ", keywords: "虎浪,表演者", primary: "B", second: "C", desc: "舞台上的老虎！和Hoshi一样，你拥有强烈的舞台掌控力和创作才华。" },
             { name: "明宰铉", group: "BOYNEXTDOOR", mbti: "ESTP", keywords: "克里斯马,中心", primary: "B", second: "B", desc: "霸气中心！像Jaehyun一样，你在舞台上气场全开，让人移不开眼。" },
             { name: "崔傘", group: "ATEEZ", mbti: "ESTP", keywords: "舞台王者,眼神杀", primary: "B", second: "C", desc: "你的眼神能杀人！像崔伞一样，在舞台上散发致命魅力，天生属于聚光灯下。" },
@@ -458,7 +458,7 @@
             { name: "边义州", group: "&TEAM", mbti: "ESTP", keywords: "霸气,队长", primary: "B", second: "D", desc: "霸气队长！和Fuma一样，你有着稳重的外表和强大的内心。" },
             { name: "王奕翔", group: "&TEAM", mbti: "ENTJ", keywords: "酷炫,rap", primary: "B", second: "B", desc: "酷炫rap担当！和Nicholas一样，你有着强烈的个人风格和舞台表现力。" }
         ],
-        sensual: [ // 感性艺术型
+        sensual: [
             { name: "尹净汉", group: "SEVENTEEN", mbti: "INFJ", keywords: "天使,感性", primary: "C", second: "D", desc: "天使般的感性。和净汉一样，你温柔细腻，总能感知到别人的情绪。" },
             { name: "洪知秀", group: "SEVENTEEN", mbti: "ISFP", keywords: "绅士,艺术感", primary: "C", second: "A", desc: "绅士般的艺术气质。和Joshua一样，你优雅感性，有着独特的艺术品味。" },
             { name: "文俊辉", group: "SEVENTEEN", mbti: "INFP", keywords: "四次元,演员", primary: "C", second: "B", desc: "四次元感性。和Jun一样，你有着丰富的内心世界和艺术表现力。" },
@@ -488,7 +488,7 @@
             { name: "朴智旻", group: "BTS", mbti: "ENFP", keywords: "现代舞,感性", primary: "C", second: "B", desc: "感性舞者！和Jimin一样，你用舞蹈表达情感，充满艺术感染力。" },
             { name: "金硕珍", group: "BTS", mbti: "INFP", keywords: "大哥,感性", primary: "C", second: "D", desc: "感性大哥！和Jin一样，你有着温柔的外表和感性的内心。" }
         ],
-        stable: [ // 稳重可靠型
+        stable: [
             { name: "崔胜哲", group: "SEVENTEEN", mbti: "ISTJ", keywords: "保护者,责任", primary: "D", second: "B", desc: "可靠的保护者。像S.Coups一样，你永远站在最前面守护成员，是值得信赖的大家长。" },
             { name: "李硕珉", group: "SEVENTEEN", mbti: "ISFJ", keywords: "温暖主唱,天使", primary: "D", second: "A", desc: "天使般的主唱。你像DK一样温暖善良，总是默默照顾身边人，用歌声抚慰人心。" },
             { name: "金珉奎", group: "SEVENTEEN", mbti: "ESTJ", keywords: "责任心,全能", primary: "D", second: "B", desc: "全能责任心。和珉奎一样，你做事靠谱，总能把一切安排得井井有条。" },
@@ -501,12 +501,12 @@
             { name: "弘中", group: "&TEAM", mbti: "ENFJ", keywords: "可靠,大哥", primary: "D", second: "C", desc: "可靠的大哥！和Ej一样，你总是照顾着弟弟们，是团队的支柱。" },
             { name: "金南俊", group: "BTS", mbti: "INFJ", keywords: "智慧队长,思想领袖", primary: "D", second: "C", desc: "智者和领袖。和RM一样，你拥有深邃的思想和强烈的责任感，是团队的精神支柱。" }
         ],
-        ace: [ // 全能ACE型
+        ace: [
             { name: "金弘中", group: "ATEEZ", mbti: "ENFJ", keywords: "全能队长,制作", primary: "mix", second: "C", desc: "全能队长！和弘中一样，你既是霸气领袖又是感性艺术家，才华横溢。" },
             { name: "李柱延", group: "THE BOYZ", mbti: "ENFJ", keywords: "视觉中心,舞台体质", primary: "mix", second: "C", desc: "舞台的中心，视觉的焦点。和李柱延一样，你拥有全方位的魅力，让人无法移开视线。" },
             { name: "崔然竣", group: "TXT", mbti: "ENTP", keywords: "全能,酷盖", primary: "mix", second: "A", desc: "全能酷盖！和然竣一样，你既能可爱又能霸气，是团队的多面手。" }
         ],
-        hidden: [ // 隐藏宝石型
+        hidden: [
             { name: "金利韩", group: "BOYNEXTDOOR", mbti: "ISFP", keywords: "神秘,贵气", primary: "low", second: "B", desc: "神秘贵气的隐藏宝石。和Leehan一样，你平时低调，但一出现就让人惊艳。" },
             { name: "姜吕尚", group: "ATEEZ", mbti: "ISFP", keywords: "清冷,潜力", primary: "low", second: "A", desc: "清冷外表下有无尽潜力。和Yeosang一样，你是尚未完全发光的宝石。" },
             { name: "宋恩奭", group: "RIIZE", mbti: "ISFP", keywords: "贵公子,安静", primary: "low", second: "C", desc: "安静的贵公子。和Eunseok一样，你有着独特的魅力，越了解越着迷。" },
@@ -584,17 +584,33 @@
         }
     }
 
-    // 匹配爱豆 (优先匹配相同MBTI，其次按次要维度)
+    // 随机从数组中选取一个元素
+    function randomPick(arr) {
+        if (!arr || arr.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+
+    // 匹配爱豆 (优先按MBTI，其次按第二维度，最后随机)
     function matchIdolWithMBTI(typeList, secondDim) {
         if (!typeList || typeList.length === 0) return null;
-        // 如果有用户MBTI，优先找完全相同的
+
+        // 1. 按MBTI精确匹配
         if (userMBTI) {
-            const sameMbti = typeList.find(idol => idol.mbti.toUpperCase() === userMBTI);
-            if (sameMbti) return sameMbti;
+            const sameMbtiList = typeList.filter(idol => idol.mbti.toUpperCase() === userMBTI);
+            if (sameMbtiList.length > 0) {
+                return randomPick(sameMbtiList);
+            }
         }
-        // 否则找次要维度匹配的
-        const bySecond = typeList.find(idol => idol.second === secondDim);
-        return bySecond || typeList[0];
+
+        // 2. 按第二维度匹配
+        const sameSecondList = typeList.filter(idol => idol.second === secondDim);
+        if (sameSecondList.length > 0) {
+            return randomPick(sameSecondList);
+        }
+
+        // 3. 完全随机
+        return randomPick(typeList);
     }
 
     // 计算结果
