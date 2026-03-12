@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆 (MBTI修正版)</title>
     <style>
         * {
             margin: 0;
@@ -472,19 +472,127 @@
         }
     ];
 
-    // 85位爱豆数据库（完整，此处省略以节省空间，实际使用时请保留完整数据）
+    // 根据搜索结果修正后的爱豆MBTI数据库
     const idols = {
-        cute: [
+        cute: [ // 可爱元气型 (A)
+            // SEVENTEEN
             { name: "夫胜宽", group: "SEVENTEEN", mbti: "ENFP", keywords: "综艺感,活力素", primary: "A", second: "C", desc: "你是团队里的综艺小树苗！像胜宽一样，用天生的幽默感和治愈笑容让所有人快乐。" },
-            // ... 其余省略，实际使用请保留全部数据
+            { name: "李灿", group: "SEVENTEEN", mbti: "ESFP", keywords: "忙内on top,舞蹈机器", primary: "A", second: "B", desc: "舞台上是舞蹈机器，生活里是团宠忙内。和Dino一样，你用实力和撒娇俘获哥哥们的心。" },
+            // BOYNEXTDOOR
+            { name: "明宰铉", group: "BOYNEXTDOOR", mbti: "ENFP", keywords: "温暖,队长", primary: "A", second: "B", desc: "你是温暖的小狗相队长！和Jaehyun一样，用亲切可爱的性格和强烈的责任感带领团队。" },
+            { name: "金云鹤", group: "BOYNEXTDOOR", mbti: "ENFP", keywords: "开朗,忙内", primary: "A", second: "A", desc: "你就是团里的开朗忙内！和Woonhak一样，用清澈的嗓音和乐观的态度感染每个人。" },
+            // ATEEZ
+            { name: "丁润浩", group: "ATEEZ", mbti: "ENFP", keywords: "快乐病毒,笑容", primary: "A", second: "A", desc: "你的笑容有魔力！和Wooyoung一样，无论何时都能把快乐传递给粉丝。" },
+            { name: "郑友荣", group: "ATEEZ", mbti: "ENFP", keywords: "快乐源泉,大高个", primary: "A", second: "B", desc: "你的快乐感染着每个人。和Yunho一样，你是团队里的开心果，永远充满正能量。" },
+            // THE BOYZ - 修正：Hyunjae是ESTP（移到cool类）
+            { name: "金泳勋", group: "THE BOYZ", mbti: "ENFP", keywords: "清爽,果汁相", primary: "A", second: "B", desc: "果汁相代表！和Kevin一样，你拥有清爽的少年感，让人看了就心情好。" },
+            { name: "金善旴", group: "THE BOYZ", mbti: "ENFP", keywords: "调皮,气氛maker", primary: "A", second: "B", desc: "气氛制造者！和Sunwoo一样，你总是能带动气氛，让周围充满欢笑。" },
+            // RIIZE
+            { name: "将太郎", group: "RIIZE", mbti: "ESFP", keywords: "舞蹈,元气", primary: "A", second: "B", desc: "舞蹈元气派！像Shotaro一样，你总是充满活力，用舞蹈和笑容感染每个人。" },
+            // ENHYPEN
+            { name: "金善禹", group: "ENHYPEN", mbti: "ENFP", keywords: "橘子,可爱", primary: "A", second: "A", desc: "像Sunoo一样，你就是一颗小橘子，酸甜可爱，总是用撒娇和笑容俘虏人心。" },
+            // TXT
+            { name: "休宁凯", group: "TXT", mbti: "ENFP", keywords: "混血王子,治愈", primary: "A", second: "C", desc: "你是团队里的维他命！ENFP特有的热情与活力，像休宁凯一样用混血王子的独特魅力和温暖性格感染着每一个人。" },
+            { name: "崔然竣", group: "TXT", mbti: "ENFP", keywords: "全能,酷盖", primary: "mix", second: "A", desc: "全能酷盖！和然竣一样，你既能可爱又能霸气，是团队的多面手。" }, // 放在ace也可，但ENFP也可爱
+            // TREASURE
+            { name: "尹材赫", group: "TREASURE", mbti: "ISFP", keywords: "快乐,感染力", primary: "C", second: "B", desc: "快乐病毒！和Jaehyuk一样，你总是充满活力，是团队的气氛担当。" }, // ISFP属于感性
+            // &TEAM
+            { name: "古贺祐大", group: "&TEAM", mbti: "ENFP", keywords: "阳光,主唱", primary: "A", second: "B", desc: "阳光主唱！和K一样，你总是带着温暖的笑容，用歌声传递快乐。" },
+            { name: "王奕翔", group: "&TEAM", mbti: "ENFP", keywords: "酷炫,rap", primary: "B", second: "B", desc: "酷炫rap担当！和Nicholas一样，你有着强烈的个人风格和舞台表现力。" }, // ENFP但偏酷
+            // BTS
+            { name: "金泰亨", group: "BTS", mbti: "INFP", keywords: "四次元,感性", primary: "C", second: "A", desc: "四次元感性！和V一样，你有着独特的艺术气质和自由的灵魂。" }, // INFP感性
         ],
-        cool: [],
-        sensual: [],
-        stable: [],
-        ace: [],
-        hidden: []
+        cool: [ // 霸气酷飒型 (B)
+            // SEVENTEEN
+            { name: "权顺荣", group: "SEVENTEEN", mbti: "ENTJ", keywords: "虎浪,表演者", primary: "B", second: "C", desc: "舞台上的老虎！和Hoshi一样，你拥有强烈的舞台掌控力和创作才华。" },
+            // BOYNEXTDOOR
+            { name: "朴成淏", group: "BOYNEXTDOOR", mbti: "ENTJ", keywords: "稳重队长", primary: "D", second: "D", desc: "稳重的大哥队长。和Sungho一样，你总是冷静可靠，是成员们依赖的对象。" }, // ENTJ其实偏霸气，但稳重为主
+            // ATEEZ
+            { name: "崔傘", group: "ATEEZ", mbti: "ESTP", keywords: "舞台王者,眼神杀", primary: "B", second: "C", desc: "你的眼神能杀人！像崔伞一样，在舞台上散发致命魅力，天生属于聚光灯下。" },
+            // THE BOYZ - 修正：Hyunjae从ENFP改为ESTP
+            { name: "李贤在", group: "THE BOYZ", mbti: "ESTP", keywords: "霸气,舞台魅力", primary: "B", second: "B", desc: "霸气中心！像Hyunjae一样，你在舞台上气场全开，用强烈的眼神和魅力征服观众。" },
+            { name: "李柱延", group: "THE BOYZ", mbti: "ENFJ", keywords: "视觉中心,舞台体质", primary: "mix", second: "C", desc: "舞台的中心，视觉的焦点。和李柱延一样，你拥有全方位的魅力，让人无法移开视线。" },
+            // RIIZE
+            { name: "宋恩奭", group: "RIIZE", mbti: "ESTP", keywords: "霸气,门面", primary: "B", second: "B", desc: "霸气门面！和Sungchan一样，你有着强烈的眼神和酷飒的气质。" },
+            // ENHYPEN
+            { name: "朴综星", group: "ENHYPEN", mbti: "ENFJ", keywords: "酷飒,美国boy", primary: "B", second: "B", desc: "酷飒的美国少年！和Jay一样，你有着强烈的个人风格和舞台魅力。" },
+            { name: "沈载伦", group: "ENHYPEN", mbti: "ESTJ", keywords: "澳洲小狗,可靠", primary: "D", second: "B", desc: "澳洲小狗！和Jake一样，你有着可靠的组织能力和直接的沟通方式。" }, // ESTJ偏稳重
+            // TXT
+            { name: "姜泰现", group: "TXT", mbti: "ENTJ", keywords: "聪明,霸气", primary: "B", second: "D", desc: "聪明又霸气的弟弟。和泰现一样，你拥有清晰的头脑和强大的气场。" },
+            // TREASURE
+            { name: "渡边温斗", group: "TREASURE", mbti: "ESTP", keywords: "酷帅,门面", primary: "B", second: "B", desc: "酷帅门面！和Haruto一样，你有着强烈的眼神和酷飒的气质。" },
+            // &TEAM
+            { name: "王奕翔", group: "&TEAM", mbti: "ENFP", keywords: "酷炫,rap", primary: "B", second: "B", desc: "酷炫rap担当！和Nicholas一样，你有着强烈的个人风格和舞台表现力。" },
+            // BTS
+            { name: "田柾国", group: "BTS", mbti: "INFP", keywords: "黄金忙内,全能", primary: "C", second: "B", desc: "内心充满艺术灵魂。和柾国一样，你不断追求完美，用歌声和表演触动人心。" },
+        ],
+        sensual: [ // 感性艺术型 (C)
+            // SEVENTEEN
+            { name: "尹净汉", group: "SEVENTEEN", mbti: "INFJ", keywords: "天使,感性", primary: "C", second: "D", desc: "天使般的感性。和净汉一样，你温柔细腻，总能感知到别人的情绪。" },
+            { name: "洪知秀", group: "SEVENTEEN", mbti: "ISFP", keywords: "绅士,艺术感", primary: "C", second: "A", desc: "绅士般的艺术气质。和Joshua一样，你优雅感性，有着独特的艺术品味。" },
+            { name: "文俊辉", group: "SEVENTEEN", mbti: "INFP", keywords: "四次元,演员", primary: "C", second: "B", desc: "四次元感性。和Jun一样，你有着丰富的内心世界和艺术表现力。" },
+            { name: "全圆佑", group: "SEVENTEEN", mbti: "INTP", keywords: "低音诗人,猫系", primary: "C", second: "D", desc: "低沉的嗓音和感性的灵魂。和圆佑一样，你常常沉浸在自我的世界里，散发着独特的猫系魅力。" },
+            { name: "李知勋", group: "SEVENTEEN", mbti: "INFP", keywords: "制作人,小巨人", primary: "C", second: "B", desc: "才华横溢的制作人。和Woozi一样，你用音乐表达情感，是团队的灵魂。" },
+            { name: "徐明浩", group: "SEVENTEEN", mbti: "INFP", keywords: "艺术家,内敛", primary: "C", second: "A", desc: "内敛的艺术家。和The8一样，你敏感细腻，用艺术表达自己的世界。" },
+            { name: "崔瀚率", group: "SEVENTEEN", mbti: "ISFP", keywords: "混血,低音炮", primary: "C", second: "B", desc: "混血感性和低音魅力。和Vernon一样，你有着独特的艺术气质和酷酷的外表。" },
+            // BOYNEXTDOOR
+            { name: "金桐儇", group: "BOYNEXTDOOR", mbti: "INTJ", keywords: "感性,创作", primary: "C", second: "C", desc: "感性的创作少年。和Taesan一样，你善于用音乐表达内心细腻的情感。" }, // INTJ偏理性，但描述为感性创作
+            // ATEEZ
+            { name: "朴星和", group: "ATEEZ", mbti: "INFJ", keywords: "温柔,大哥", primary: "C", second: "D", desc: "温柔的大哥。和Seonghwa一样，你感性细腻，总是温柔地照顾着成员。" },
+            // THE BOYZ
+            { name: "裴俊英", group: "THE BOYZ", mbti: "ISFJ", keywords: "温暖,哥哥", primary: "D", second: "D", desc: "温暖的哥哥。和Jacob一样，你总是默默照顾成员，给人安全感。" }, // ISFJ稳重
+            { name: "李柱英", group: "THE BOYZ", mbti: "INFP", keywords: "梦幻,颜值", primary: "C", second: "A", desc: "梦幻颜值担当。和Younghoon一样，你有着梦幻般的外貌和感性的内心。" },
+            { name: "金善旴", group: "THE BOYZ", mbti: "INFP", keywords: "清纯,猫咪", primary: "C", second: "D", desc: "清纯猫咪相。和New一样，你拥有清纯的外表和感性的灵魂。" },
+            // RIIZE
+            { name: "元彬", group: "RIIZE", mbti: "INFJ", keywords: "清冷,颜值", primary: "C", second: "C", desc: "清冷颜值担当。和Wonbin一样，你有着清冷的气质和感性的艺术细胞。" },
+            { name: "安桐", group: "RIIZE", mbti: "INTP", keywords: "音乐,才气", primary: "C", second: "A", desc: "音乐才子。和Anton一样，你有着出众的音乐才华和感性的内心。" },
+            // ENHYPEN
+            { name: "李羲承", group: "ENHYPEN", mbti: "INTP", keywords: "感性,队长", primary: "C", second: "C", desc: "感性队长。和Heeseung一样，你有着丰富的感情和卓越的领导力。" },
+            { name: "朴成训", group: "ENHYPEN", mbti: "ISTJ", keywords: "冰王子,感性", primary: "D", second: "A", desc: "冰王子外表下是感性的心。和成训一样，你外表清冷，内心温暖细腻。" }, // ISTJ稳重
+            // TXT
+            { name: "崔杋圭", group: "TXT", mbti: "INFP", keywords: "感性,艺术", primary: "C", second: "A", desc: "感性艺术家。和杋圭一样，你有着丰富的想象力和艺术感，常常沉浸在自己的世界里。" },
+            { name: "崔秀彬", group: "TXT", mbti: "ISFP", keywords: "温柔,兔子", primary: "C", second: "C", desc: "温柔的兔子队长。和秀彬一样，你感性而温暖，总是默默照顾成员。" },
+            // TREASURE
+            { name: "尹材赫", group: "TREASURE", mbti: "ISFP", keywords: "快乐,感染力", primary: "C", second: "B", desc: "快乐病毒！和Jaehyuk一样，你总是充满活力，是团队的气氛担当。" },
+            // &TEAM
+            { name: "重田美琉", group: "&TEAM", mbti: "INFP", keywords: "可爱,感性", primary: "C", second: "A", desc: "可爱又感性！和Harua一样，你外表可爱，内心细腻丰富。" },
+            // BTS
+            { name: "金泰亨", group: "BTS", mbti: "INFP", keywords: "四次元,感性", primary: "C", second: "A", desc: "四次元感性！和V一样，你有着独特的艺术气质和自由的灵魂。" },
+            { name: "田柾国", group: "BTS", mbti: "INFP", keywords: "黄金忙内,全能", primary: "C", second: "B", desc: "内心充满艺术灵魂。和柾国一样，你不断追求完美，用歌声和表演触动人心。" },
+            { name: "金硕珍", group: "BTS", mbti: "INFP", keywords: "大哥,感性", primary: "C", second: "D", desc: "感性大哥！和Jin一样，你有着温柔的外表和感性的内心。" },
+        ],
+        stable: [ // 稳重可靠型 (D)
+            // SEVENTEEN
+            { name: "崔胜哲", group: "SEVENTEEN", mbti: "INFP", keywords: "保护者,责任", primary: "D", second: "B", desc: "可靠的保护者。像S.Coups一样，你永远站在最前面守护成员，是值得信赖的大家长。" }, // 修正为INFP
+            { name: "李硕珉", group: "SEVENTEEN", mbti: "ISFJ", keywords: "温暖主唱,天使", primary: "D", second: "A", desc: "天使般的主唱。你像DK一样温暖善良，总是默默照顾身边人，用歌声抚慰人心。" },
+            { name: "金珉奎", group: "SEVENTEEN", mbti: "ESTJ", keywords: "责任心,全能", primary: "D", second: "B", desc: "全能责任心。和珉奎一样，你做事靠谱，总能把一切安排得井井有条。" },
+            // BOYNEXTDOOR
+            { name: "朴成淏", group: "BOYNEXTDOOR", mbti: "ENTJ", keywords: "稳重队长", primary: "D", second: "D", desc: "稳重的大哥队长。和Sungho一样，你总是冷静可靠，是成员们依赖的对象。" },
+            // ATEEZ
+            { name: "崔钟浩", group: "ATEEZ", mbti: "ISTJ", keywords: "主唱,稳重型", primary: "D", second: "D", desc: "稳重型主唱。和钟浩一样，你虽然年纪小但很可靠，用歌声打动人心。" },
+            // THE BOYZ
+            { name: "李上渊", group: "THE BOYZ", mbti: "ENFJ", keywords: "队长,可靠", primary: "D", second: "D", desc: "可靠的队长。和Sangyeon一样，你总是照顾着成员，是团队的坚实后盾。" },
+            { name: "裴俊英", group: "THE BOYZ", mbti: "ISFJ", keywords: "温暖,哥哥", primary: "D", second: "D", desc: "温暖的哥哥。和Jacob一样，你总是默默照顾成员，给人安全感。" },
+            // ENHYPEN
+            { name: "梁祯元", group: "ENHYPEN", mbti: "ISTJ", keywords: "稳重队长,领导力", primary: "D", second: "D", desc: "稳重可靠的队长。和祯元一样，你虽然年纪小，但有着超乎年龄的责任感。" },
+            { name: "朴成训", group: "ENHYPEN", mbti: "ISTJ", keywords: "冰王子,感性", primary: "D", second: "A", desc: "冰王子外表下是感性的心。和成训一样，你外表清冷，内心温暖细腻。" },
+            // TREASURE
+            { name: "崔玹硕", group: "TREASURE", mbti: "ENTJ", keywords: "队长,稳重", primary: "D", second: "B", desc: "稳重队长！和Hyunsuk一样，你有着强大的领导力和责任感。" },
+            // BTS
+            { name: "金南俊", group: "BTS", mbti: "INFJ", keywords: "智慧队长,思想领袖", primary: "D", second: "C", desc: "智者和领袖。和RM一样，你拥有深邃的思想和强烈的责任感，是团队的精神支柱。" },
+        ],
+        ace: [ // 全能ACE型
+            { name: "金弘中", group: "ATEEZ", mbti: "ENFJ", keywords: "全能队长,制作", primary: "mix", second: "C", desc: "全能队长！和弘中一样，你既是霸气领袖又是感性艺术家，才华横溢。" },
+            { name: "李柱延", group: "THE BOYZ", mbti: "ENFJ", keywords: "视觉中心,舞台体质", primary: "mix", second: "C", desc: "舞台的中心，视觉的焦点。和李柱延一样，你拥有全方位的魅力，让人无法移开视线。" },
+            { name: "崔然竣", group: "TXT", mbti: "ENFP", keywords: "全能,酷盖", primary: "mix", second: "A", desc: "全能酷盖！和然竣一样，你既能可爱又能霸气，是团队的多面手。" },
+        ],
+        hidden: [ // 隐藏宝石型
+            { name: "金利韩", group: "BOYNEXTDOOR", mbti: "ESFJ", keywords: "神秘,贵气", primary: "low", second: "B", desc: "神秘贵气的隐藏宝石。和Leehan一样，你平时低调，但一出现就让人惊艳。" },
+            { name: "宋恩奭", group: "RIIZE", mbti: "ESTP", keywords: "贵公子,安静", primary: "B", second: "B", desc: "安静的贵公子。和Eunseok一样，你有着独特的魅力，越了解越着迷。" }, // ESTP放在cool
+            { name: "西村力", group: "ENHYPEN", mbti: "ESFP", keywords: "舞蹈天才,冷感", primary: "A", second: "B", desc: "沉默的舞蹈天才。和NI-KI一样，平时低调，一旦站上舞台就用碾压级的实力惊艳所有人。" }, // ESFP可爱
+            { name: "闵玧其", group: "BTS", mbti: "ISTP", keywords: "天才,冷都男", primary: "low", second: "B", desc: "天才冷都男！和SUGA一样，你外表冷酷，内心火热，拥有无限潜力。" },
+        ]
     };
-    // 为节省篇幅，此处省略了完整数据，您可以在之前的代码中找到完整版本，或者告诉我需要我补全
 
     const mbtiCard = document.getElementById('mbtiCard');
     const quizCard = document.getElementById('quizCard');
