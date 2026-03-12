@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(修正版)</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(MBTI融合版)</title>
     <style>
         * {
             margin: 0;
@@ -46,7 +46,7 @@
             margin-top: 0.5rem;
             font-weight: 500;
         }
-        .quiz-card {
+        .card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
             border-radius: 32px;
@@ -54,6 +54,56 @@
             box-shadow: 0 20px 40px rgba(200, 140, 180, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.6);
             margin-bottom: 2rem;
+        }
+        .mbti-input-area {
+            text-align: center;
+        }
+        .mbti-input-area h2 {
+            color: #a6446b;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+        .mbti-input-area p {
+            color: #7b5a7a;
+            margin-bottom: 1.5rem;
+        }
+        .mbti-input-area input {
+            width: 150px;
+            padding: 0.8rem 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            border: 2px solid #ffb0c3;
+            border-radius: 50px;
+            background: white;
+            color: #4a2f42;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            outline: none;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+        .mbti-input-area input:focus {
+            border-color: #ff5790;
+            box-shadow: 0 0 0 3px #ffb6c1;
+        }
+        .start-btn {
+            background: #ff80b0;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 16px #ffb8cf;
+            cursor: pointer;
+            transition: all 0.25s;
+            border: 2px solid #ffe2f0;
+            letter-spacing: 1px;
+        }
+        .start-btn:hover {
+            background: #ff5790;
+            transform: scale(1.02);
+            box-shadow: 0 12px 20px #ff9ebe;
         }
         .progress {
             text-align: center;
@@ -192,6 +242,17 @@
             margin: 1rem 0 0.8rem;
             border: 1px solid #95c8ff;
         }
+        .user-mbti-badge {
+            background: #fdd0e2;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 700;
+            color: #a03a5e;
+            margin: 0.5rem 0 1rem;
+            border: 1px solid #ff9ebb;
+            font-size: 1rem;
+        }
         .result-desc {
             font-size: 1.1rem;
             line-height: 1.5;
@@ -238,35 +299,51 @@
             margin-top: 2rem;
             font-size: 0.9rem;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
 <div class="wrapper">
     <div class="header">
         <h1>✨ 내 아이돌 성격 테스트 ✨</h1>
-        <p>点击选项 · 自动跳转 (85位男爱豆)</p>
+        <p>输入你的MBTI · 匹配最契合的爱豆</p>
     </div>
 
-    <div class="quiz-card" id="quizContainer">
+    <!-- MBTI 输入卡片 -->
+    <div id="mbtiCard" class="card mbti-input-area">
+        <h2>🧪 先告诉我你的MBTI</h2>
+        <p>（例如 ENFP、INFP、ISTJ...）</p>
+        <input type="text" id="mbtiInput" placeholder="ENTP" maxlength="4" autocomplete="off">
+        <br>
+        <button class="start-btn" id="startTestBtn">✨ 开始测试 ✨</button>
+    </div>
+
+    <!-- 测试卡片 (初始隐藏) -->
+    <div id="quizCard" class="card hidden">
         <div class="progress" id="progressDisplay">第 1 / 8 题</div>
         <div id="questionArea"></div>
     </div>
 
+    <!-- 结果卡片 (初始隐藏) -->
     <div class="result-card" id="resultCard">
         <div class="result-badge" id="resultType"></div>
         <div class="result-name" id="resultName"></div>
         <div class="result-group" id="resultGroup"></div>
+        <div class="user-mbti-badge" id="userMbtiDisplay"></div>
         <div class="result-mbti" id="resultMbti"></div>
         <div class="result-desc" id="resultDesc"></div>
         <div class="result-keywords" id="resultKeywords"></div>
         <button class="reset-btn" id="resetBtn">🔄 重新测试</button>
     </div>
-    <footer>❤️ 纯文本感性派 · 每一位爱豆都是宝藏</footer>
+
+    <footer>❤️ 纯文本感性派 · 每位爱豆都是宝藏</footer>
 </div>
 
 <script>
 (function() {
-    // ----- 最终版题库 (共8题) -----
+    // ----- 题库 (最终版) -----
     const questions = [
         {
             text: "1. 如果去爱豆签售会，你会怎么吸引偶像注意？",
@@ -342,7 +419,7 @@
         }
     ];
 
-    // ----- 85位爱豆数据库 (完整版，键名英文) -----
+    // ----- 85位爱豆数据库 (同前，键名英文) -----
     const idols = {
         cute: [ // 可爱元气型
             { name: "夫胜宽", group: "SEVENTEEN", mbti: "ENFP", keywords: "综艺感,活力素", primary: "A", second: "C", desc: "你是团队里的综艺小树苗！像胜宽一样，用天生的幽默感和治愈笑容让所有人快乐。" },
@@ -438,16 +515,48 @@
         ]
     };
 
-    // ----- 测试流程控制 -----
+    // ----- DOM 元素 -----
+    const mbtiCard = document.getElementById('mbtiCard');
+    const quizCard = document.getElementById('quizCard');
+    const resultCard = document.getElementById('resultCard');
+    const mbtiInput = document.getElementById('mbtiInput');
+    const startBtn = document.getElementById('startTestBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const progressDisplay = document.getElementById('progressDisplay');
+    const questionArea = document.getElementById('questionArea');
+    // 结果元素
+    const resultType = document.getElementById('resultType');
+    const resultName = document.getElementById('resultName');
+    const resultGroup = document.getElementById('resultGroup');
+    const userMbtiDisplay = document.getElementById('userMbtiDisplay');
+    const resultMbti = document.getElementById('resultMbti');
+    const resultDesc = document.getElementById('resultDesc');
+    const resultKeywords = document.getElementById('resultKeywords');
+
+    // ----- 测试状态 -----
     let currentIndex = 0;
     const answers = [];
+    let userMBTI = '';  // 存储用户输入的MBTI
 
-    const progressEl = document.getElementById('progressDisplay');
-    const questionArea = document.getElementById('questionArea');
-    const quizCard = document.getElementById('quizContainer');
-    const resultCard = document.getElementById('resultCard');
-    const resetBtn = document.getElementById('resetBtn');
+    // 开始测试：隐藏MBTI卡片，显示测试卡片
+    startBtn.addEventListener('click', function() {
+        let rawMBTI = mbtiInput.value.trim().toUpperCase();
+        // 简单过滤只保留字母，长度不超过4
+        rawMBTI = rawMBTI.replace(/[^A-Z]/g, '').slice(0, 4);
+        if (rawMBTI.length < 4) {
+            alert('请输入完整的四个字母（例如 ENFP）');
+            return;
+        }
+        userMBTI = rawMBTI;
+        mbtiCard.classList.add('hidden');
+        quizCard.classList.remove('hidden');
+        // 重置答题状态
+        currentIndex = 0;
+        answers.length = 0;
+        renderQuestion(0);
+    });
 
+    // 渲染题目
     function renderQuestion(index) {
         if (index >= questions.length) {
             calculateResult();
@@ -461,7 +570,7 @@
         });
         html += '</div>';
         questionArea.innerHTML = html;
-        progressEl.innerText = `第 ${index+1} / ${questions.length} 题`;
+        progressDisplay.innerText = `第 ${index+1} / ${questions.length} 题`;
 
         const radios = document.getElementsByName(`q${index}`);
         for (let radio of radios) {
@@ -475,6 +584,20 @@
         }
     }
 
+    // 匹配爱豆 (优先匹配相同MBTI，其次按次要维度)
+    function matchIdolWithMBTI(typeList, secondDim) {
+        if (!typeList || typeList.length === 0) return null;
+        // 如果有用户MBTI，优先找完全相同的
+        if (userMBTI) {
+            const sameMbti = typeList.find(idol => idol.mbti.toUpperCase() === userMBTI);
+            if (sameMbti) return sameMbti;
+        }
+        // 否则找次要维度匹配的
+        const bySecond = typeList.find(idol => idol.second === secondDim);
+        return bySecond || typeList[0];
+    }
+
+    // 计算结果
     function calculateResult() {
         let A=0, B=0, C=0, D=0;
         answers.forEach(d => {
@@ -507,8 +630,7 @@
                 maxDims.forEach(d => delete rest[d]);
                 const restKeys = Object.keys(rest);
                 if (restKeys.length === 0) {
-                    // 所有维度同分，随便选一个第二维度（例如A）
-                    secondDim = 'A';
+                    secondDim = 'A'; // 全相同
                 } else {
                     secondDim = restKeys.reduce((a, b) => rest[a] > rest[b] ? a : b);
                 }
@@ -522,16 +644,18 @@
             }
         }
 
+        // 根据主类型获取对应列表，然后匹配爱豆
         let idol;
         if (mainType === 'ace') {
-            idol = idols.ace.find(i => i.second === secondDim) || idols.ace[0];
+            idol = matchIdolWithMBTI(idols.ace, secondDim) || idols.ace[0];
         } else if (mainType === 'hidden') {
-            idol = idols.hidden.find(i => i.second === secondDim) || idols.hidden[0];
+            idol = matchIdolWithMBTI(idols.hidden, secondDim) || idols.hidden[0];
         } else {
             const list = idols[mainType];
-            idol = list.find(i => i.second === secondDim) || list[0];
+            idol = matchIdolWithMBTI(list, secondDim) || list[0];
         }
 
+        // 显示结果
         const typeDisplay = {
             'cute': '🐰 可爱元气型',
             'cool': '😎 霸气酷飒型',
@@ -540,28 +664,35 @@
             'ace': '🌟 全能ACE型',
             'hidden': '💎 隐藏宝石型'
         };
-        document.getElementById('resultType').innerText = typeDisplay[mainType] || '✨ 专属角色';
-        document.getElementById('resultName').innerText = idol.name;
-        document.getElementById('resultGroup').innerText = idol.group;
-        document.getElementById('resultMbti').innerText = `MBTI · ${idol.mbti}`;
-        document.getElementById('resultDesc').innerText = idol.desc;
+        resultType.innerText = typeDisplay[mainType] || '✨ 专属角色';
+        resultName.innerText = idol.name;
+        resultGroup.innerText = idol.group;
+        // 显示用户MBTI
+        if (userMBTI) {
+            userMbtiDisplay.innerText = `你的MBTI · ${userMBTI}`;
+        } else {
+            userMbtiDisplay.innerText = '';
+        }
+        resultMbti.innerText = `爱豆MBTI · ${idol.mbti}`;
+        resultDesc.innerText = idol.desc;
         const kw = idol.keywords.split(',').map(k => `<span class="keyword">#${k.trim()}</span>`).join('');
-        document.getElementById('resultKeywords').innerHTML = kw;
+        resultKeywords.innerHTML = kw;
 
-        quizCard.style.display = 'none';
+        quizCard.classList.add('hidden');
         resultCard.classList.add('show');
     }
 
+    // 重置测试 (回到MBTI输入界面)
     function resetTest() {
         currentIndex = 0;
         answers.length = 0;
-        quizCard.style.display = 'block';
+        userMBTI = '';
+        mbtiInput.value = '';
+        quizCard.classList.add('hidden');
         resultCard.classList.remove('show');
-        renderQuestion(0);
+        mbtiCard.classList.remove('hidden');
     }
 
-    // 初始化
-    renderQuestion(0);
     resetBtn.addEventListener('click', resetTest);
 })();
 </script>
