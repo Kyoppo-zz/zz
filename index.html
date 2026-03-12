@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(修复版)</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(最终版)</title>
     <style>
         * {
             margin: 0;
@@ -266,15 +266,15 @@
 
 <script>
 (function() {
-    // ----- 题库 -----
+    // ----- 最终版题库 (共8题) -----
     const questions = [
         {
             text: "1. 如果去爱豆签售会，你会怎么吸引偶像注意？",
             options: [
-                { text: "比心、撒娇、做可爱表情包", dim: "A" },
-                { text: "戴墨镜扮酷，用眼神杀打招呼", dim: "B" },
-                { text: "精心准备手写信或自作曲片段", dim: "C" },
-                { text: "帮后面粉丝递礼物，顺便说“欧巴照顾好自己”", dim: "D" }
+                { text: "带上自己做的可爱配饰，想亲手给爱豆戴上", dim: "A" },
+                { text: "在观礼区举起大炮，为爱豆疯狂出片", dim: "B" },
+                { text: "递上精心准备的手写信和逆应援小礼物", dim: "C" },
+                { text: "帮同担带话，顺便说“欧巴要一直健康”", dim: "D" }
             ]
         },
         {
@@ -342,7 +342,7 @@
         }
     ];
 
-    // ----- 85位爱豆数据库 (使用英文键名避免潜在问题) -----
+    // ----- 85位爱豆数据库 (完整版，键名英文) -----
     const idols = {
         cute: [ // 可爱元气型
             { name: "夫胜宽", group: "SEVENTEEN", mbti: "ENFP", keywords: "综艺感,活力素", primary: "A", second: "C", desc: "你是团队里的综艺小树苗！像胜宽一样，用天生的幽默感和治愈笑容让所有人快乐。" },
@@ -381,7 +381,7 @@
             { name: "边义州", group: "&TEAM", mbti: "ESTP", keywords: "霸气,队长", primary: "B", second: "D", desc: "霸气队长！和Fuma一样，你有着稳重的外表和强大的内心。" },
             { name: "王奕翔", group: "&TEAM", mbti: "ENTJ", keywords: "酷炫,rap", primary: "B", second: "B", desc: "酷炫rap担当！和Nicholas一样，你有着强烈的个人风格和舞台表现力。" }
         ],
-        sensual: [ // 感性艺术型 (原“感性”)
+        sensual: [ // 感性艺术型
             { name: "尹净汉", group: "SEVENTEEN", mbti: "INFJ", keywords: "天使,感性", primary: "C", second: "D", desc: "天使般的感性。和净汉一样，你温柔细腻，总能感知到别人的情绪。" },
             { name: "洪知秀", group: "SEVENTEEN", mbti: "ISFP", keywords: "绅士,艺术感", primary: "C", second: "A", desc: "绅士般的艺术气质。和Joshua一样，你优雅感性，有着独特的艺术品味。" },
             { name: "文俊辉", group: "SEVENTEEN", mbti: "INFP", keywords: "四次元,演员", primary: "C", second: "B", desc: "四次元感性。和Jun一样，你有着丰富的内心世界和艺术表现力。" },
@@ -438,7 +438,7 @@
         ]
     };
 
-    // 当前题目索引和答案存储
+    // ----- 测试流程控制 -----
     let currentIndex = 0;
     const answers = [];
 
@@ -448,7 +448,6 @@
     const resultCard = document.getElementById('resultCard');
     const resetBtn = document.getElementById('resetBtn');
 
-    // 显示题目
     function renderQuestion(index) {
         if (index >= questions.length) {
             calculateResult();
@@ -464,7 +463,6 @@
         questionArea.innerHTML = html;
         progressEl.innerText = `第 ${index+1} / ${questions.length} 题`;
 
-        // 添加change事件
         const radios = document.getElementsByName(`q${index}`);
         for (let radio of radios) {
             radio.addEventListener('change', function(e) {
@@ -477,7 +475,6 @@
         }
     }
 
-    // 计算结果
     function calculateResult() {
         let A=0, B=0, C=0, D=0;
         answers.forEach(d => {
@@ -519,7 +516,6 @@
             }
         }
 
-        // 获取匹配的爱豆
         let idol;
         if (mainType === 'ace') {
             idol = idols.ace.find(i => i.second === secondDim) || idols.ace[0];
@@ -530,7 +526,6 @@
             idol = list.find(i => i.second === secondDim) || list[0];
         }
 
-        // 显示结果
         const typeDisplay = {
             'cute': '🐰 可爱元气型',
             'cool': '😎 霸气酷飒型',
@@ -551,7 +546,6 @@
         resultCard.classList.add('show');
     }
 
-    // 重置
     function resetTest() {
         currentIndex = 0;
         answers.length = 0;
