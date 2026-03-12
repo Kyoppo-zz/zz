@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(随机匹配版)</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(MBTI结合版)</title>
     <style>
         * {
             margin: 0;
@@ -249,9 +249,20 @@
             display: inline-block;
             font-weight: 700;
             color: #a03a5e;
-            margin: 0.5rem 0 1rem;
+            margin: 0.5rem 0 0.5rem;
             border: 1px solid #ff9ebb;
             font-size: 1rem;
+        }
+        .mbti-note {
+            font-size: 0.9rem;
+            color: #a65e7a;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            background: #fff0f5;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
         }
         .result-desc {
             font-size: 1.1rem;
@@ -308,7 +319,7 @@
 <div class="wrapper">
     <div class="header">
         <h1>✨ 내 아이돌 성격 테스트 ✨</h1>
-        <p>输入你的MBTI · 随机匹配更分散</p>
+        <p>输入你的MBTI · 匹配最契合的爱豆</p>
     </div>
 
     <!-- MBTI 输入卡片 -->
@@ -333,6 +344,7 @@
         <div class="result-group" id="resultGroup"></div>
         <div class="user-mbti-badge" id="userMbtiDisplay"></div>
         <div class="result-mbti" id="resultMbti"></div>
+        <div class="mbti-note" id="mbtiNote"></div>
         <div class="result-desc" id="resultDesc"></div>
         <div class="result-keywords" id="resultKeywords"></div>
         <button class="reset-btn" id="resetBtn">🔄 重新测试</button>
@@ -530,6 +542,7 @@
     const resultGroup = document.getElementById('resultGroup');
     const userMbtiDisplay = document.getElementById('userMbtiDisplay');
     const resultMbti = document.getElementById('resultMbti');
+    const mbtiNote = document.getElementById('mbtiNote');
     const resultDesc = document.getElementById('resultDesc');
     const resultKeywords = document.getElementById('resultKeywords');
 
@@ -690,6 +703,12 @@
             userMbtiDisplay.innerText = '';
         }
         resultMbti.innerText = `爱豆MBTI · ${idol.mbti}`;
+        // 增加一条说明，显示MBTI如何影响匹配
+        if (userMBTI && idol.mbti.toUpperCase() === userMBTI) {
+            mbtiNote.innerText = '✨ 你的MBTI与这位爱豆完美契合，优先匹配！';
+        } else {
+            mbtiNote.innerText = '✨ 匹配时优先考虑了相同MBTI的爱豆';
+        }
         resultDesc.innerText = idol.desc;
         const kw = idol.keywords.split(',').map(k => `<span class="keyword">#${k.trim()}</span>`).join('');
         resultKeywords.innerHTML = kw;
