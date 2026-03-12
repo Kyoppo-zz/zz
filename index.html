@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(最终版)</title>
+    <title>🎧 韩娱MBTI · 你的灵魂爱豆是谁？(修正版)</title>
     <style>
         * {
             margin: 0;
@@ -505,7 +505,13 @@
                 mainType = 'ace';
                 const rest = { A, B, C, D };
                 maxDims.forEach(d => delete rest[d]);
-                secondDim = Object.keys(rest).reduce((a, b) => rest[a] > rest[b] ? a : b);
+                const restKeys = Object.keys(rest);
+                if (restKeys.length === 0) {
+                    // 所有维度同分，随便选一个第二维度（例如A）
+                    secondDim = 'A';
+                } else {
+                    secondDim = restKeys.reduce((a, b) => rest[a] > rest[b] ? a : b);
+                }
             } else {
                 const mainDim = maxDims[0];
                 const map = { 'A': 'cute', 'B': 'cool', 'C': 'sensual', 'D': 'stable' };
